@@ -31,9 +31,10 @@ import ScrollToTop from './component/ScrollToTop'
 
 /* Mujhe yeha  ek server URL banana hai */
 /* ye backend ka Url hai  */
-export const serverUrl = "http://localhost:8000" /* ye pura app ma chala jeyagio jop bhi iske elements hai like home signup login  */
-
-
+// export const serverUrl = "http://localhost:8000" /* ye pura app ma chala jeyagio jop bhi iske elements hai like home signup login  */
+/* For Deployment */
+// Backend server URL
+export const serverUrl = import.meta.env.VITE_API_URL
 
 const App = () => {
   useGetCurrentUser()   /* JB JB HAM hOME PAGE pr aaya tho ahmera function baar baar call ho ... */
