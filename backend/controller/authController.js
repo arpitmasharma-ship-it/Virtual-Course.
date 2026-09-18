@@ -9,64 +9,119 @@ import sendMail from "../config/sendMail.js";
 
 /* SignUp */
 
+// export const signUp = async (req, res) => {
+//     try {
+//         const { name, email, password, role } = req.body   /* react se bheja hua data mila yeha pe   */
+//         const existUser = await User.findOne({ email })
+//         if (existUser) {
+//             return res.status(400).json({
+//                 message: "User Already Exists"
+//             })
+//         }
+//         /* User jo email; type kr raha hai kya vo shi hai ya nhi ye check krna ke liya
+//         We will Use Validator  */
+//         /* isEmail is a property of the validator to check the email  */
+//         if (!validator.isEmail(email)) {
+//             return res.status(400).json({
+//                 message: "Enter Valid Email"
+//             })
+//         }
+
+//         if (password.length < 8) {
+//             return res.status(400).json(
+//                 {
+//                     message: "Enter a Strong Password"
+
+//                 }
+//             )
+//         }
+
+
+//         //////// now hamea password ko hash kerana hi hai matlab krana hi hai to we /* we will use await */
+//         let hashPassword = await bcrypt.hash(password, 10)
+//         /* Now we will create the user  */
+//         const user = await User.create({
+//             name, email, password: hashPassword, role
+//         })
+
+
+//         /* now ab jasa hi hamera user create ho vesa hi hamea ek token create krna hai  */
+//         let token = await genToken(user._id)
+//         /* now i have to store the token ion the cookie  */
+//         res.cookie("token", token, {
+//             httpOnly: true,
+//             secure: false,
+//             sameSite: "strict",
+//             maxAge: 7 * 24 * 60 * 60 * 1000  /* this is 7 days in miliSeconds  */
+//         })
+//         /* Cookie ke ander ye Token 7 din ke liya store hoga  */
+
+//         /* we will pass an reasponse here */
+//         return res.status(201).json(user)
+
+
+
+//     } catch (error) {
+//         return res.status(500).json({
+//             message: `SignUp Error ${error}`
+//         })
+//     }
+// }
+
 export const signUp = async (req, res) => {
-    try {
-        const { name, email, password, role } = req.body   /* react se bheja hua data mila yeha pe   */
-        const existUser = await User.findOne({ email })
-        if (existUser) {
-            return res.status(400).json({
-                message: "User Already Exists"
-            })
-        }
-        /* User jo email; type kr raha hai kya vo shi hai ya nhi ye check krna ke liya
-        We will Use Validator  */
-        /* isEmail is a property of the validator to check the email  */
-        if (!validator.isEmail(email)) {
-            return res.status(400).json({
-                message: "Enter Valid Email"
-            })
-        }
+  try {
+    const { name, email, password, role } = req.body;
 
-        if (password.length < 8) {
-            return res.status(400).json(
-                {
-                    message: "Enter a Strong Password"
+    console.log("SIGNUP BODY:", req.body);
 
-                }
-            )
-        }
+    const existUser = await User.findOne({ email });
 
-
-        //////// now hamea password ko hash kerana hi hai matlab krana hi hai to we /* we will use await */
-        let hashPassword = await bcrypt.hash(password, 10)
-        /* Now we will create the user  */
-        const user = await User.create({
-            name, email, password: hashPassword, role
-        })
-
-
-        /* now ab jasa hi hamera user create ho vesa hi hamea ek token create krna hai  */
-        let token = await genToken(user._id)
-        /* now i have to store the token ion the cookie  */
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,
-            sameSite: "strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000  /* this is 7 days in miliSeconds  */
-        })
-        /* Cookie ke ander ye Token 7 din ke liya store hoga  */
-
-        /* we will pass an reasponse here */
-        return res.status(201).json(user)
-
-
-
-    } catch (error) {
-        return res.status(500).json({
-            message: `SignUp Error ${error}`
-        })
+    if (existUser) {
+      return res.status(400).json({
+        message: "User Already Exists"
+      });
     }
-}
+
+    if (!email || !validator.isEmail(email)) {
+      return res.status(400).json({
+        message: "Enter Valid Email"
+      });
+    }
+
+    if (!password || password.length < 8) {
+      return res.status(400).json({
+        message: "Enter a Strong Password"
+      });
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashPassword,
+      role
+    });
+
+    const token = await genToken(user._id);
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+
+    return res.status(201).json(user);
+
+  } catch (error) {
+    console.error("SIGNUP ERROR:", error);
+
+    return res.status(500).json({
+      message: `SignUp Error: ${error.message}`
+    });
+  }
+};
 
 
 /* NOW FOR LOGIN */
