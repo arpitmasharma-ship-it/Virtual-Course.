@@ -1,0 +1,71 @@
+﻿
+frontend\src\App.jsx:34:export const serverUrl = "http://localhost:8000" /* ye pura app ma chala jeyagio jop bhi iske 
+elements hai like home signup login  */
+frontend\src\component\Navbar.jsx:8:import axios from "axios"
+frontend\src\component\Navbar.jsx:38:            const result = await axios.get(serverUrl + "/api/auth/logout", { 
+withCredentials: true })
+frontend\src\customHooks\getCreatorCourse.js:2:// import axios from "axios"
+frontend\src\customHooks\getCreatorCourse.js:15://                     const result = await axios.get(serverUrl + 
+"/api/course/getcreator", { withCredentials: true })
+frontend\src\customHooks\getCreatorCourse.js:38:import axios from "axios";
+frontend\src\customHooks\getCreatorCourse.js:57:                const result = await axios.get(
+frontend\src\customHooks\getCurrentUser.js:5:import axios from "axios"
+frontend\src\customHooks\getCurrentUser.js:16:                const result = await axios.get(
+frontend\src\customHooks\getCurrentUser.js:41:// import axios from "axios"
+frontend\src\customHooks\getCurrentUser.js:52://         const result = await axios.get(serverUrl + 
+"/api/user/getcurrentuser" , {withCredentials:true})/* yeha ham post requestv tho send kr nhi raha hai thi hamea yeha 
+kuch bhi pass krna ki jarurat nhi hai. */
+frontend\src\customHooks\getPublishedCourse.js:1:import axios from 'axios'
+frontend\src\customHooks\getPublishedCourse.js:13:                const result = await axios.get(serverUrl + 
+"/api/course/getpublished", { withCredentials: true })
+frontend\src\customHooks\getPublishedCourse.js:36:    axios.get(...)
+frontend\src\customHooks\getPublishedCourse.js:51:            const result = await axios.get(
+frontend\src\customHooks\getPublishedCourse.js:99:Axios
+frontend\src\customHooks\getPublishedCourse.js:111:Axios
+frontend\src\pages\EditProfile.jsx:7:import axios from "axios"
+frontend\src\pages\EditProfile.jsx:46:            const result = await axios.post(serverUrl + "/api/user/profile", 
+formData, { withCredentials: true })
+frontend\src\pages\ForgetPassword.jsx:4:  import axios from "axios"
+frontend\src\pages\ForgetPassword.jsx:36:        const result = await axios.post(serverUrl + "/api/auth/sendotp", { 
+email }, { withCredentials: true })
+frontend\src\pages\ForgetPassword.jsx:58:        const result = await axios.post(serverUrl + "/api/auth/verifyotp", { 
+email, otp }, { withCredentials: true })
+frontend\src\pages\ForgetPassword.jsx:85:        const result = await axios.post(serverUrl + 
+"/api/auth/resetpassword", { email, password: newPassword }, { withCredentials: true })
+frontend\src\pages\Login.jsx:9:import axios from "axios"
+frontend\src\pages\Login.jsx:52:      /* Axios frontend aur backend ke beech communication karwata hai.
+frontend\src\pages\Login.jsx:53:      Matlab React se backend ko request bhejne ke liye Axios use kar sakte ho. */
+frontend\src\pages\Login.jsx:56:      const result = await axios.post(serverUrl + "/api/auth/login", { email, password 
+}, { withCredentials: true })
+frontend\src\pages\Login.jsx:95:      const result = await axios.post(serverUrl + "/api/auth/googleauth", { name: 
+gname, email: gemail }, { withCredentials: true })
+frontend\src\pages\SignUp.jsx:8:import axios from "axios"
+frontend\src\pages\SignUp.jsx:29:  /* axios kya kreag jo rouets or conmtrollers hamena banaya hai unko fetch kraga . */
+frontend\src\pages\SignUp.jsx:59:      /* Axios frontend aur backend ke beech communication karwata hai.
+frontend\src\pages\SignUp.jsx:60:      Matlab React se backend ko request bhejne ke liye Axios use kar sakte ho. */
+frontend\src\pages\SignUp.jsx:63:      const result = await axios.post(serverUrl + "/api/auth/signup", { name, 
+password, email, role }, { withCredentials: true })
+frontend\src\pages\SignUp.jsx:101:      const result = await axios.post(serverUrl + "/api/auth/googleauth", { name: 
+gname, email: gemail, role }, { withCredentials: true })
+frontend\src\pages\ViewCourse.jsx:10:import axios from 'axios';
+frontend\src\pages\ViewCourse.jsx:53:                    const result = await axios.post(
+frontend\src\pages\Educator\CreateCourses.jsx:5:import axios from "axios"
+frontend\src\pages\Educator\CreateCourses.jsx:27:      const result = await axios.post(serverUrl + 
+"/api/course/create", { title, category }, { withCredentials: true })
+frontend\src\pages\Educator\CreateLecture.jsx:7:import axios from 'axios';
+frontend\src\pages\Educator\CreateLecture.jsx:35:            const result = await axios.post(serverUrl + 
+`/api/course/createlecture/${courseId}`, { lectureTitle }, { withCredentials: true })
+frontend\src\pages\Educator\CreateLecture.jsx:64:                const result = await axios.get(serverUrl + 
+`/api/course/courselecture/${courseId}`, { withCredentials: true })
+frontend\src\pages\Educator\EditCourses.jsx:7:import axios from 'axios';
+frontend\src\pages\Educator\EditCourses.jsx:42:      const result = await axios.get(serverUrl + 
+`/api/course/getcourse/${courseId}`, { withCredentials: true })
+frontend\src\pages\Educator\EditCourses.jsx:108:      const result = await axios.post(serverUrl + 
+`/api/course/editcourse/${courseId}`, formData, { withCredentials: true })
+frontend\src\pages\Educator\EditCourses.jsx:147:      const result = await axios.delete(serverUrl + 
+`/api/course/remove/${courseId}`, { withCredentials: true })
+frontend\src\pages\Educator\EditLecture.jsx:6:import axios from 'axios';
+frontend\src\pages\Educator\EditLecture.jsx:50:            const result = await axios.post(
+frontend\src\pages\Educator\EditLecture.jsx:72:            const result = await axios.delete(
+
+

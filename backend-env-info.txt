@@ -1,0 +1,28 @@
+﻿
+backend\index.js:37:const port = process.env.PORT || 8000;
+backend\testCloudinary.js:10:    process.env.CLOUDINARY_NAME ? "Loaded" : "❌ Missing"
+backend\testCloudinary.js:15:    process.env.CLOUDINARY_API_KEY ? "Loaded" : "❌ Missing"
+backend\testCloudinary.js:20:    process.env.CLOUDINARY_API_SECRET ? "Loaded" : "❌ Missing"
+backend\testCloudinary.js:25:    cloud_name: process.env.CLOUDINARY_NAME,
+backend\testCloudinary.js:26:    api_key: process.env.CLOUDINARY_API_KEY,
+backend\testCloudinary.js:27:    api_secret: process.env.CLOUDINARY_API_SECRET,
+backend\testCloudinaryUpload.js:7:    cloud_name: process.env.CLOUDINARY_NAME,
+backend\testCloudinaryUpload.js:8:    api_key: process.env.CLOUDINARY_API_KEY,
+backend\testCloudinaryUpload.js:9:    api_secret: process.env.CLOUDINARY_API_SECRET,
+backend\testCloudinaryUpload.js:16:    process.env.CLOUDINARY_NAME ? "Loaded" : "Missing"
+backend\testCloudinaryUpload.js:21:    process.env.CLOUDINARY_API_KEY ? "Loaded" : "Missing"
+backend\testCloudinaryUpload.js:26:    process.env.CLOUDINARY_API_SECRET ? "Loaded" : "Missing"
+backend\testUpload.js:7:    cloud_name: process.env.CLOUDINARY_NAME,
+backend\testUpload.js:8:    api_key: process.env.CLOUDINARY_API_KEY,
+backend\testUpload.js:9:    api_secret: process.env.CLOUDINARY_API_SECRET,
+backend\config\cloudinary.js:14:        cloud_name: process.env.CLOUDINARY_NAME,
+backend\config\cloudinary.js:15:        api_key: process.env.CLOUDINARY_API_KEY,
+backend\config\cloudinary.js:16:        api_secret: process.env.CLOUDINARY_API_SECRET
+backend\config\db.js:5:        const connection = await mongoose.connect(process.env.MONGO_URI)
+backend\config\sendMail.js:12:        user: process.env.USER_EMAIL,
+backend\config\sendMail.js:13:        pass: process.env.USER_PASSWORD,
+backend\config\sendMail.js:30:        from: process.env.USER_EMAIL, // sender address
+backend\config\token.js:8:        const token = await jwt.sign({userId} ,process.env.JWT_SECRET , {expiresIn:"7d"} )
+backend\middleware\isAuth.js:20:        let verifyToken = await jwt.verify(token, process.env.JWT_SECRET)
+
+
