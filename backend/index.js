@@ -18,14 +18,22 @@ const app = express();
  app.use(cookieParser())
 
 
-
- app.use(cors({
+/*  app.use(cors({
 origin:"http://localhost:5173", 
 credentials:true
- }))  /* ek cors package hai vo frontend and backend ki bich ma connetivity maintaiain krta hai .
+ })) */
+  /* ek cors package hai vo frontend and backend ki bich ma connetivity maintaiain krta hai .
  And && hame usme ek origin dena hota hai tho orign ma frontend ka ek URL de denga  */
 
 
+ /* For deployment  */
+ app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://virtual-course-chaa58xty-arpitsharmajecrccsai53-1488s-projects.vercel.app"
+    ],
+    credentials: true
+}))
  
 
  /* Hamena jo route banaya hai  authRoute waka usse hema yeha lena hai.. */
