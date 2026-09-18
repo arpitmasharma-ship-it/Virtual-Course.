@@ -27,14 +27,13 @@ credentials:true
 
 
  /* For deployment  */
- app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://virtual-course-chaa58xty-arpitsharmajecrccsai53-1488s-projects.vercel.app"
-    ],
-    credentials: true
-}))
- 
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://virtual-course-g9cvpcjbk-arpitsharmajecrccsai53-1488s-projects.vercel.app"
+  ],
+  credentials: true
+}));
 
  /* Hamena jo route banaya hai  authRoute waka usse hema yeha lena hai.. */
  /* api/auth   jb bhi ma ye seach kruga ko jo auth route ko start kr dega  */
