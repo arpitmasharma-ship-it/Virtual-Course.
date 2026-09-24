@@ -16,12 +16,12 @@ const RazorPayInstance = new razorpay({
 
 export const RazorpayOrder  = async (req , res) => {
     try {
-        const {courseId} = req.body()
+        const {courseId} = req.body 
         /* finding the course  */
         const course = await Course.findById(courseId)
 
         if(!course){
-            return resizeBy.status(404).json({
+            return res.status(404).json({
                 message : "Course Not Found ."
             })
         }
@@ -34,7 +34,7 @@ export const RazorpayOrder  = async (req , res) => {
        const options = {
         amount: course.price*100 , 
         currency : 'INR' , 
-        receipt : `${courseId}.toString()`
+       receipt: courseId.toString()
        }  
 
 
@@ -42,19 +42,21 @@ export const RazorpayOrder  = async (req , res) => {
 
    const order = await RazorPayInstance.orders.create(options)
 
-   return resizeBy.status(200).josn(order)
+   return res.status(200).json(order)
     } catch (error) {
-        
+        return res.status(500).json({
+        message: `Internal Server Error: ${error.message}`
+    });
     }
 }
 
 
 /* payment Verify krna ka liya we are doing this .  */
 
-export const verifyPayment  = async () => {
+export const verifyPayment  = async (req , res) => {
     try {
         /* verify hoga order ki id ke through .  */
-        const {courseId , userId , razorpay_order_id} = req.body()
+        const {courseId , userId , razorpay_order_id} = req.body
         /* yeha ham order ko fetch krange . */
         const orderInfo = await RazorPayInstance.orders.fetch(razorpay_order_id)
       if(orderInfo.status === 'paid'){
@@ -89,7 +91,7 @@ export const verifyPayment  = async () => {
 
 
     } catch (error) {
-        return res.status(500).josn({
+        return res.status(500).json({
             message:`Internal Server error during payment verification ${error}`
         })
     }
