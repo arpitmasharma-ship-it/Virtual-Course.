@@ -10,45 +10,93 @@ const RazorPayInstance = new razorpay({
 
 })
 
+
+
 /* RazorPayInstance es ki help se ham yeha ek order create krnana wala hai fir ham yeha verify bhi krana wala hai . */
 
 /* Creating an order  */
 
-export const RazorpayOrder  = async (req , res) => {
+export const RazorpayOrder = async (req, res) => {
     try {
-        const {courseId} = req.body 
-        /* finding the course  */
-        const course = await Course.findById(courseId)
+        const { courseId } = req.body;
 
-        if(!course){
+        console.log("COURSE ID:", courseId);
+
+        const course = await Course.findById(courseId);
+
+        console.log("COURSE:", course);
+
+        if (!course) {
             return res.status(404).json({
-                message : "Course Not Found ."
-            })
+                message: "Course Not Found."
+            });
         }
 
-        /* course mil jana ke baad  */
+        console.log("COURSE PRICE:", course.price);
 
-        /* RazorpayIbntance se order create krn aka luiya ham kuch cheeza chaiye hoti ahi jsa currency  , price ,  */
+        const options = {
+            amount: course.price * 100,
+            currency: "INR",
+            receipt: courseId.toString()
+        };
 
-       /* for that we need to create Options  */
-       const options = {
-        amount: course.price*100 , 
-        currency : 'INR' , 
-       receipt: courseId.toString()
-       }  
+        console.log("RAZORPAY OPTIONS:", options);
 
+        const order = await RazorPayInstance.orders.create(options);
 
-      /* Now Create An Order .  */
+        console.log("RAZORPAY ORDER:", order);
 
-   const order = await RazorPayInstance.orders.create(options)
+        return res.status(200).json(order);
 
-   return res.status(200).json(order)
     } catch (error) {
+
+        console.log("========== RAZORPAY ERROR ==========");
+        console.log(error);
+        console.log("====================================");
+
         return res.status(500).json({
-        message: `Internal Server Error: ${error.message}`
-    });
+            message: `Internal Server Error: ${error.message}`
+        });
     }
-}
+};
+
+
+
+// export const RazorpayOrder  = async (req , res) => {
+//     try {
+//         const {courseId} = req.body 
+//         /* finding the course  */
+//         const course = await Course.findById(courseId)
+
+//         if(!course){
+//             return res.status(404).json({
+//                 message : "Course Not Found ."
+//             })
+//         }
+
+//         /* course mil jana ke baad  */
+
+//         /* RazorpayIbntance se order create krn aka luiya ham kuch cheeza chaiye hoti ahi jsa currency  , price ,  */
+
+//        /* for that we need to create Options  */
+//        const options = {
+//         amount: course.price*100 , 
+//         currency : 'INR' , 
+//        receipt: courseId.toString()
+//        }  
+
+
+//       /* Now Create An Order .  */
+
+//    const order = await RazorPayInstance.orders.create(options)
+
+//    return res.status(200).json(order)
+//     } catch (error) {
+//         return res.status(500).json({
+//         message: `Internal Server Error: ${error.message}`
+//     });
+//     }
+// }
 
 
 /* payment Verify krna ka liya we are doing this .  */
