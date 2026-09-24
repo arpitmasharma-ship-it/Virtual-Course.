@@ -1,5 +1,5 @@
 import express from "express"
-import { RazorpayOrder, verifyPayment } from "../controller/orderController"
+import { RazorpayOrder, verifyPayment } from "../controller/orderController.js"
 
 
 
