@@ -22,6 +22,10 @@ const ViewCourse = () => {
     const [creatorData, setCreatorData] = useState(null)
     const [creatorCourses, setCreatorCourses] = useState(null)
 
+    /* To get the userId for sending it to the razorpay backend  */
+    const {userData} = useSelector(status=>status.user)
+    /* userData ma mera Current User hai .  */
+
 
 
 
@@ -80,6 +84,17 @@ const ViewCourse = () => {
     }, [creatorData, courseData]);
 
 
+    const handleEnroll = async (userId , courseId) => {
+        try {
+            /* Creating the order .  */
+            const orderData = await axios.post(serverUrl + "/api/order/razorpay_order" ,{userId , courseId}   ,  {withCredentials:true})
+         console.log(orderData)
+        } catch (error) {
+            
+        }
+    }
+
+
 
     return (
         <div className='min-h-screen bg-gray-50 p-6'  >
@@ -124,7 +139,7 @@ const ViewCourse = () => {
                             </ul>
 
 
-                            <button className='bg-[black] text-white px-6 py-2 rounded hover:bg-gray-700 mt-3 cursor-pointer '   >Enroll Now</button>
+                            <button onClick={()=>handleEnroll(userData._id , courseId)}  className='bg-[black] text-white px-6 py-2 rounded hover:bg-gray-700 mt-3 cursor-pointer '   >Enroll Now</button>
 
 
 

@@ -65,6 +65,7 @@ import authRouter from "./route/authRoute.js";
 import cors from "cors";
 import userRoute from "./route/userRoute.js";
 import courseRouter from "./route/courseRoute.js";
+import paymentRouter from "./route/paymentRoute.js";
 
 dotenv.config();
 
@@ -84,6 +85,15 @@ app.use(cors({
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRoute);
 app.use("/api/course", courseRouter);
+app.use("/api/order" , paymentRouter)
+
+
+
+app.get("/api/order/test", (req, res) => {
+    res.json({
+        message: "ORDER ROUTE WORKING"
+    });
+});
 
 // Port
 const port = process.env.PORT || 8000;

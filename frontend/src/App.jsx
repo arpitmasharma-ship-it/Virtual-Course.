@@ -80,7 +80,7 @@ const App = () => {
           {/* yeha ham courseId isliye deta hai jiske ki hama params ma courseId mil sakha ...  */}
           <Route path='/editlecture/:courseId/:lectureId' element={userData?.role === "educator" ? <EditLecture /> : <Navigate to={"/signup"} />} />
           {/* view Course Route  */}
-          <Route path='/viewcourse/:courseId' element={userData?.role === "educator" ? <ViewCourse /> : <Navigate to={"/signup"} />} />
+          <Route path='/viewcourse/:courseId' element={userData ? <ViewCourse /> : <Navigate to={"/signup"} />} />
 
       </Routes>
 
